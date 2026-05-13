@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8" />
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>ScoreMaster</title>
+<title>coreMaster</title>
 
 <style>
 
@@ -13,6 +16,7 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:Arial,sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
@@ -26,7 +30,7 @@ header{
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:20px;
+padding:20px 30px;
 background:#0b0b0b;
 border-bottom:1px solid #222;
 position:sticky;
@@ -40,7 +44,25 @@ font-weight:bold;
 color:#4d7cff;
 }
 
-/* MAIN CONTAINER */
+/* BUTTON */
+
+.btn{
+padding:16px 32px;
+border:none;
+border-radius:40px;
+background:#fff;
+color:#000;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+font-size:16px;
+}
+
+.btn:hover{
+transform:translateY(-2px);
+}
+
+/* CONTAINER */
 
 .container{
 max-width:1200px;
@@ -48,16 +70,17 @@ margin:auto;
 padding:25px;
 }
 
-/* HERO SECTION */
+/* HERO */
 
 .hero{
 text-align:center;
-padding:70px 0;
+padding:80px 0;
 }
 
 .hero h1{
-font-size:52px;
+font-size:60px;
 line-height:1.2;
+margin-bottom:20px;
 }
 
 .hero span{
@@ -67,29 +90,11 @@ color:transparent;
 }
 
 .hero p{
-margin:25px auto;
-max-width:800px;
-color:#aaa;
+max-width:850px;
+margin:auto;
 font-size:22px;
-line-height:1.6;
-}
-
-/* BUTTON */
-
-.btn{
-padding:18px 35px;
-border:none;
-border-radius:40px;
-background:#fff;
-color:#000;
-font-weight:bold;
-cursor:pointer;
-transition:0.3s;
-margin-top:10px;
-}
-
-.btn:hover{
-transform:scale(1.03);
+line-height:1.7;
+color:#aaa;
 }
 
 /* GRID */
@@ -98,7 +103,7 @@ transform:scale(1.03);
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:25px;
-margin-top:50px;
+margin-top:60px;
 }
 
 /* CARD */
@@ -107,84 +112,136 @@ margin-top:50px;
 background:#0c0c0c;
 border:1px solid #222;
 border-radius:25px;
-padding:28px;
+padding:30px;
 cursor:pointer;
-transition:0.35s;
+transition:.35s;
+position:relative;
+overflow:hidden;
+}
+
+.card::before{
+content:'';
+position:absolute;
+width:220px;
+height:220px;
+background:rgba(77,124,255,.06);
+border-radius:50%;
+top:-100px;
+right:-100px;
 }
 
 .card:hover{
-transform:translateY(-8px);
-box-shadow:0 10px 30px rgba(77,124,255,.25);
+transform:translateY(-10px);
+background:#111;
+border-color:#4d7cff;
+box-shadow:0 15px 40px rgba(77,124,255,.25);
+}
+
+.icon{
+font-size:45px;
+margin-bottom:15px;
 }
 
 .card h2{
-margin:15px 0;
-font-size:28px;
+font-size:30px;
+margin-bottom:12px;
 }
 
 .card p{
 color:#aaa;
-line-height:1.5;
+line-height:1.6;
 }
 
-/* PAGES */
+/* PAGE */
 
 .page{
 display:none;
 padding:40px 0;
+animation:fade .35s ease;
 }
 
 .active{
 display:block;
 }
 
+@keyframes fade{
+
+from{
+opacity:0;
+transform:translateY(15px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
 /* TABLE */
 
 table{
 width:100%;
-margin-top:20px;
 border-collapse:collapse;
-overflow-x:auto;
-}
-
-th,td{
-padding:14px;
-border:1px solid #222;
-text-align:center;
+margin-top:20px;
+background:#0d0d0d;
+border-radius:15px;
+overflow:hidden;
 }
 
 th{
 background:#111;
+color:#fff;
+padding:16px;
+border:1px solid #222;
+}
+
+td{
+padding:14px;
+border:1px solid #222;
 }
 
 /* INPUTS */
 
 input,select{
 width:100%;
-padding:12px;
-margin:8px 0;
+padding:14px;
 background:#111;
-color:#fff;
 border:1px solid #333;
-border-radius:10px;
+border-radius:12px;
+color:#fff;
+margin-top:10px;
 font-size:16px;
+outline:none;
+}
+
+input:focus,
+select:focus{
+border-color:#4d7cff;
 }
 
 /* RESULT */
 
 .result{
-font-size:26px;
 margin-top:25px;
+font-size:28px;
 font-weight:bold;
 color:#4d7cff;
+}
+
+/* SECTION TITLE */
+
+.page h1{
+margin-bottom:25px;
+font-size:42px;
 }
 
 /* FOOTER */
 
 .footer{
 text-align:center;
-padding:50px;
-color:#888;
+padding:60px 20px;
+color:#777;
 font-size:18px;
 }
 
@@ -192,8 +249,12 @@ font-size:18px;
 
 @media(max-width:768px){
 
+.hero{
+padding:60px 0;
+}
+
 .hero h1{
-font-size:36px;
+font-size:40px;
 }
 
 .hero p{
@@ -204,17 +265,27 @@ font-size:18px;
 font-size:24px;
 }
 
-.btn{
-padding:15px 28px;
-}
-
 .card h2{
 font-size:24px;
+}
+
+.page h1{
+font-size:32px;
+}
+
+.btn{
+width:100%;
+margin-top:15px;
+}
+
+header{
+padding:18px;
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
@@ -247,9 +318,11 @@ Track Academic
 </h1>
 
 <p>
-CGPA, SGPA, Percentage, Attendance and Internal Marks —
-all in one smart student platform.
+CGPA, SGPA, Attendance, Internal Marks and Percentage
+all in one modern student dashboard.
 </p>
+
+<br>
 
 <button class="btn">
 Get Started
@@ -263,6 +336,8 @@ Get Started
 
 <div class="card" onclick="show('cgpa')">
 
+<div class="icon">🎓</div>
+
 <h2>CGPA Calculator</h2>
 
 <p>
@@ -273,6 +348,8 @@ Calculate overall cumulative GPA accurately.
 
 <div class="card" onclick="show('sgpa')">
 
+<div class="icon">📘</div>
+
 <h2>SGPA Calculator</h2>
 
 <p>
@@ -281,7 +358,9 @@ Calculate semester GPA with credits and grades.
 
 </div>
 
-<div class="card">
+<div class="card" onclick="show('attendance')">
+
+<div class="icon">📅</div>
 
 <h2>Attendance Calculator</h2>
 
@@ -291,7 +370,9 @@ Track attendance percentage and requirements.
 
 </div>
 
-<div class="card">
+<div class="card" onclick="show('internal')">
+
+<div class="icon">🧠</div>
 
 <h2>Internal Marks</h2>
 
@@ -301,17 +382,21 @@ Estimate your internal academic performance.
 
 </div>
 
-<div class="card">
+<div class="card" onclick="show('goal')">
+
+<div class="icon">🎯</div>
 
 <h2>Goal Predictor</h2>
 
 <p>
-Predict the SGPA needed for your target CGPA.
+Predict SGPA required for target CGPA.
 </p>
 
 </div>
 
-<div class="card">
+<div class="card" onclick="show('percentage')">
+
+<div class="icon">📊</div>
 
 <h2>Percentage Converter</h2>
 
@@ -325,7 +410,7 @@ Convert CGPA into percentage instantly.
 
 </section>
 
-<!-- CGPA PAGE -->
+<!-- CGPA -->
 
 <section id="cgpa" class="page">
 
@@ -341,6 +426,8 @@ Convert CGPA into percentage instantly.
 
 </table>
 
+<br>
+
 <button class="btn" onclick="addSem()">
 Add Semester
 </button>
@@ -353,7 +440,7 @@ Calculate CGPA
 
 </section>
 
-<!-- SGPA PAGE -->
+<!-- SGPA -->
 
 <section id="sgpa" class="page">
 
@@ -369,6 +456,8 @@ Calculate CGPA
 
 </table>
 
+<br>
+
 <button class="btn" onclick="addSub()">
 Add Subject
 </button>
@@ -381,10 +470,124 @@ Calculate SGPA
 
 </section>
 
+<!-- ATTENDANCE -->
+
+<section id="attendance" class="page">
+
+<h1>Attendance Calculator</h1>
+
+<input type="number"
+id="totalClasses"
+placeholder="Total Classes">
+
+<input type="number"
+id="attendedClasses"
+placeholder="Classes Attended">
+
+<button class="btn"
+onclick="calcAttendance()">
+
+Calculate Attendance
+
+</button>
+
+<div id="attendanceRes"
+class="result"></div>
+
+</section>
+
+<!-- INTERNAL -->
+
+<section id="internal" class="page">
+
+<h1>Internal Marks Calculator</h1>
+
+<input type="number"
+id="mid1"
+placeholder="Mid Exam 1">
+
+<input type="number"
+id="mid2"
+placeholder="Mid Exam 2">
+
+<input type="number"
+id="assignment"
+placeholder="Assignment Marks">
+
+<button class="btn"
+onclick="calcInternal()">
+
+Calculate Internal
+
+</button>
+
+<div id="internalRes"
+class="result"></div>
+
+</section>
+
+<!-- GOAL -->
+
+<section id="goal" class="page">
+
+<h1>Goal Predictor</h1>
+
+<input type="number"
+id="currentCgpa"
+placeholder="Current CGPA">
+
+<input type="number"
+id="targetCgpa"
+placeholder="Target CGPA">
+
+<input type="number"
+id="completedCredits"
+placeholder="Completed Credits">
+
+<input type="number"
+id="nextCredits"
+placeholder="Next Semester Credits">
+
+<button class="btn"
+onclick="calcGoal()">
+
+Predict SGPA
+
+</button>
+
+<div id="goalRes"
+class="result"></div>
+
+</section>
+
+<!-- PERCENTAGE -->
+
+<section id="percentage" class="page">
+
+<h1>Percentage Converter</h1>
+
+<input type="number"
+id="cgpaInput"
+placeholder="Enter CGPA">
+
+<button class="btn"
+onclick="calcPercentage()">
+
+Convert Percentage
+
+</button>
+
+<div id="percentageRes"
+class="result"></div>
+
+</section>
+
 <!-- FOOTER -->
 
 <div class="footer">
+
 © 2026 ScoreMaster
+
 </div>
 
 </div>
@@ -405,13 +608,19 @@ document
 .getElementById(id)
 .classList.add('active');
 
+window.scrollTo({
+top:0,
+behavior:'smooth'
+});
+
 }
 
 /* ADD SEMESTER */
 
 function addSem(){
 
-let r=document
+let r =
+document
 .getElementById('cgpaTable')
 .insertRow();
 
@@ -453,11 +662,13 @@ document
 
 if(i){
 
-let s=parseFloat(
+let s =
+parseFloat(
 r.querySelector('.sgpa').value
 )||0;
 
-let c=parseFloat(
+let c =
+parseFloat(
 r.querySelector('.cr').value
 )||0;
 
@@ -483,7 +694,8 @@ document
 
 function addSub(){
 
-let r=document
+let r =
+document
 .getElementById('sgpaTable')
 .insertRow();
 
@@ -504,19 +716,12 @@ min="0">
 <select class="gr">
 
 <option value="10">O</option>
-
 <option value="9">A+</option>
-
 <option value="8">A</option>
-
 <option value="7">B+</option>
-
 <option value="6">B</option>
-
 <option value="5">C</option>
-
 <option value="4">P</option>
-
 <option value="0">F</option>
 
 </select>
@@ -541,11 +746,13 @@ document
 
 if(i){
 
-let c=parseFloat(
+let c =
+parseFloat(
 r.querySelector('.cred').value
 )||0;
 
-let g=parseFloat(
+let g =
+parseFloat(
 r.querySelector('.gr').value
 )||0;
 
@@ -564,6 +771,118 @@ let result = credits
 document
 .getElementById('sgpaRes')
 .innerHTML = "SGPA : " + result;
+
+}
+
+/* ATTENDANCE */
+
+function calcAttendance(){
+
+let total =
+parseFloat(
+document.getElementById('totalClasses').value
+)||0;
+
+let attended =
+parseFloat(
+document.getElementById('attendedClasses').value
+)||0;
+
+let percentage = total
+? ((attended/total)*100).toFixed(2)
+: 0;
+
+document
+.getElementById('attendanceRes')
+.innerHTML =
+"Attendance : " + percentage + "%";
+
+}
+
+/* INTERNAL */
+
+function calcInternal(){
+
+let mid1 =
+parseFloat(
+document.getElementById('mid1').value
+)||0;
+
+let mid2 =
+parseFloat(
+document.getElementById('mid2').value
+)||0;
+
+let assignment =
+parseFloat(
+document.getElementById('assignment').value
+)||0;
+
+let total =
+((mid1+mid2)/2)
++ assignment;
+
+document
+.getElementById('internalRes')
+.innerHTML =
+"Internal Marks : " + total;
+
+}
+
+/* GOAL */
+
+function calcGoal(){
+
+let current =
+parseFloat(
+document.getElementById('currentCgpa').value
+)||0;
+
+let target =
+parseFloat(
+document.getElementById('targetCgpa').value
+)||0;
+
+let completed =
+parseFloat(
+document.getElementById('completedCredits').value
+)||0;
+
+let next =
+parseFloat(
+document.getElementById('nextCredits').value
+)||0;
+
+let required = (
+(target*(completed+next))
+-(current*completed)
+)/next;
+
+document
+.getElementById('goalRes')
+.innerHTML =
+"Required SGPA : "
++ required.toFixed(2);
+
+}
+
+/* PERCENTAGE */
+
+function calcPercentage(){
+
+let cgpa =
+parseFloat(
+document.getElementById('cgpaInput').value
+)||0;
+
+let percentage =
+(cgpa*9.5).toFixed(2);
+
+document
+.getElementById('percentageRes')
+.innerHTML =
+"Percentage : "
++ percentage + "%";
 
 }
 
