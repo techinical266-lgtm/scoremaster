@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>ScoreMaster</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#050505;
+color:#fff;
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+background:#0b0b0b;
+border-bottom:1px solid #222;
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.logo{
+font-size:30px;
+font-weight:bold;
+color:#4d7cff;
+}
+
+/* MAIN CONTAINER */
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:25px;
+}
+
+/* HERO SECTION */
+
+.hero{
+text-align:center;
+padding:70px 0;
+}
+
+.hero h1{
+font-size:52px;
+line-height:1.2;
+}
+
+.hero span{
+background:linear-gradient(90deg,#4d7cff,#a855f7);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.hero p{
+margin:25px auto;
+max-width:800px;
+color:#aaa;
+font-size:22px;
+line-height:1.6;
+}
+
+/* BUTTON */
+
+.btn{
+padding:18px 35px;
+border:none;
+border-radius:40px;
+background:#fff;
+color:#000;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+margin-top:10px;
+}
+
+.btn:hover{
+transform:scale(1.03);
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+margin-top:50px;
+}
+
+/* CARD */
+
+.card{
+background:#0c0c0c;
+border:1px solid #222;
+border-radius:25px;
+padding:28px;
+cursor:pointer;
+transition:0.35s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 10px 30px rgba(77,124,255,.25);
+}
+
+.card h2{
+margin:15px 0;
+font-size:28px;
+}
+
+.card p{
+color:#aaa;
+line-height:1.5;
+}
+
+/* PAGES */
+
+.page{
+display:none;
+padding:40px 0;
+}
+
+.active{
+display:block;
+}
+
+/* TABLE */
+
+table{
+width:100%;
+margin-top:20px;
+border-collapse:collapse;
+overflow-x:auto;
+}
+
+th,td{
+padding:14px;
+border:1px solid #222;
+text-align:center;
+}
+
+th{
+background:#111;
+}
+
+/* INPUTS */
+
+input,select{
+width:100%;
+padding:12px;
+margin:8px 0;
+background:#111;
+color:#fff;
+border:1px solid #333;
+border-radius:10px;
+font-size:16px;
+}
+
+/* RESULT */
+
+.result{
+font-size:26px;
+margin-top:25px;
+font-weight:bold;
+color:#4d7cff;
+}
+
+/* FOOTER */
+
+.footer{
+text-align:center;
+padding:50px;
+color:#888;
+font-size:18px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:36px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.logo{
+font-size:24px;
+}
+
+.btn{
+padding:15px 28px;
+}
+
+.card h2{
+font-size:24px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+<div class="logo">ScoreMaster</div>
+
+<button class="btn" onclick="show('home')">
+Home
+</button>
+
+</header>
+
+<!-- MAIN -->
+
+<div class="container">
+
+<!-- HOME -->
+
+<section id="home" class="page active">
+
+<div class="hero">
+
+<h1>
+Track Academic
+<span>Performance Easily</span>
+</h1>
+
+<p>
+CGPA, SGPA, Percentage, Attendance and Internal Marks —
+all in one smart student platform.
+</p>
+
+<button class="btn">
+Get Started
+</button>
+
+</div>
+
+<!-- GRID -->
+
+<div class="grid">
+
+<div class="card" onclick="show('cgpa')">
+
+<h2>CGPA Calculator</h2>
+
+<p>
+Calculate overall cumulative GPA accurately.
+</p>
+
+</div>
+
+<div class="card" onclick="show('sgpa')">
+
+<h2>SGPA Calculator</h2>
+
+<p>
+Calculate semester GPA with credits and grades.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Attendance Calculator</h2>
+
+<p>
+Track attendance percentage and requirements.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Internal Marks</h2>
+
+<p>
+Estimate your internal academic performance.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Goal Predictor</h2>
+
+<p>
+Predict the SGPA needed for your target CGPA.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Percentage Converter</h2>
+
+<p>
+Convert CGPA into percentage instantly.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CGPA PAGE -->
+
+<section id="cgpa" class="page">
+
+<h1>CGPA Calculator</h1>
+
+<table id="cgpaTable">
+
+<tr>
+<th>Semester</th>
+<th>SGPA</th>
+<th>Credits</th>
+</tr>
+
+</table>
+
+<button class="btn" onclick="addSem()">
+Add Semester
+</button>
+
+<button class="btn" onclick="calcCGPA()">
+Calculate CGPA
+</button>
+
+<div id="cgpaRes" class="result"></div>
+
+</section>
+
+<!-- SGPA PAGE -->
+
+<section id="sgpa" class="page">
+
+<h1>SGPA Calculator</h1>
+
+<table id="sgpaTable">
+
+<tr>
+<th>Subject</th>
+<th>Credits</th>
+<th>Grade</th>
+</tr>
+
+</table>
+
+<button class="btn" onclick="addSub()">
+Add Subject
+</button>
+
+<button class="btn" onclick="calcSGPA()">
+Calculate SGPA
+</button>
+
+<div id="sgpaRes" class="result"></div>
+
+</section>
+
+<!-- FOOTER -->
+
+<div class="footer">
+© 2026 ScoreMaster
+</div>
+
+</div>
+
+<!-- SCRIPT -->
+
+<script>
+
+/* PAGE NAVIGATION */
+
+function show(id){
+
+document
+.querySelectorAll('.page')
+.forEach(x=>x.classList.remove('active'));
+
+document
+.getElementById(id)
+.classList.add('active');
+
+}
+
+/* ADD SEMESTER */
+
+function addSem(){
+
+let r=document
+.getElementById('cgpaTable')
+.insertRow();
+
+r.innerHTML=`
+
+<td>
+<input placeholder="Semester Name">
+</td>
+
+<td>
+<input class="sgpa"
+type="number"
+step=".01"
+min="0"
+max="10">
+</td>
+
+<td>
+<input class="cr"
+type="number"
+min="0">
+</td>
+
+`;
+
+}
+
+/* CALCULATE CGPA */
+
+function calcCGPA(){
+
+let total=0;
+
+let credits=0;
+
+document
+.querySelectorAll('#cgpaTable tr')
+.forEach((r,i)=>{
+
+if(i){
+
+let s=parseFloat(
+r.querySelector('.sgpa').value
+)||0;
+
+let c=parseFloat(
+r.querySelector('.cr').value
+)||0;
+
+total += s*c;
+
+credits += c;
+
+}
+
+});
+
+let result = credits
+? (total/credits).toFixed(2)
+: 0;
+
+document
+.getElementById('cgpaRes')
+.innerHTML = "CGPA : " + result;
+
+}
+
+/* ADD SUBJECT */
+
+function addSub(){
+
+let r=document
+.getElementById('sgpaTable')
+.insertRow();
+
+r.innerHTML=`
+
+<td>
+<input placeholder="Subject Name">
+</td>
+
+<td>
+<input class="cred"
+type="number"
+min="0">
+</td>
+
+<td>
+
+<select class="gr">
+
+<option value="10">O</option>
+
+<option value="9">A+</option>
+
+<option value="8">A</option>
+
+<option value="7">B+</option>
+
+<option value="6">B</option>
+
+<option value="5">C</option>
+
+<option value="4">P</option>
+
+<option value="0">F</option>
+
+</select>
+
+</td>
+
+`;
+
+}
+
+/* CALCULATE SGPA */
+
+function calcSGPA(){
+
+let total=0;
+
+let credits=0;
+
+document
+.querySelectorAll('#sgpaTable tr')
+.forEach((r,i)=>{
+
+if(i){
+
+let c=parseFloat(
+r.querySelector('.cred').value
+)||0;
+
+let g=parseFloat(
+r.querySelector('.gr').value
+)||0;
+
+total += c*g;
+
+credits += c;
+
+}
+
+});
+
+let result = credits
+? (total/credits).toFixed(2)
+: 0;
+
+document
+.getElementById('sgpaRes')
+.innerHTML = "SGPA : " + result;
+
+}
+
+/* DEFAULT ROWS */
+
+addSem();
+
+addSub();
+
+</script>
+
+</body>
+</html>
