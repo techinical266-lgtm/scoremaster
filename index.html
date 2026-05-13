@@ -485,7 +485,7 @@ id="attendedClasses"
 placeholder="Classes Attended">
 
 <button class="btn"
-onclick="calcAttendance()">
+onclick="calcAttendance">
 
 Calculate Attendance
 
@@ -515,7 +515,7 @@ id="assignment"
 placeholder="Assignment Marks">
 
 <button class="btn"
-onclick="calcInternal()">
+onclick="calcInternal">
 
 Calculate Internal
 
@@ -549,7 +549,7 @@ id="nextCredits"
 placeholder="Next Semester Credits">
 
 <button class="btn"
-onclick="calcGoal()">
+onclick="calcGoal">
 
 Predict SGPA
 
@@ -571,7 +571,7 @@ id="cgpaInput"
 placeholder="Enter CGPA">
 
 <button class="btn"
-onclick="calcPercentage()">
+onclick="calcPercentage">
 
 Convert Percentage
 
@@ -720,6 +720,10 @@ min="0">
 <option value="8">A</option>
 <option value="7">B+</option>
 <option value="6">B</option>
+
+<!-- ✅ ADDED C+ -->
+<option value="5.5">C+</option>
+
 <option value="5">C</option>
 <option value="4">P</option>
 <option value="0">F</option>
